@@ -6,25 +6,39 @@
 #
 #    http://shiny.rstudio.com/
 #
-rm(list = ls())
-library(shiny)
+# rm(list = ls())
+# library(shiny)
+# 
+# shinyUI(
+#     fluidPage(   
+#         #Application title
+#         titlePanel("Participatory Design Study"),
+#         
+#         #Sidebar with controls length of password
+#         sidebarLayout(
+#             sidebarPanel(
+#                 textInput("user", 
+#                              label = h3("Enter your Username here")),
+#                 actionButton("button", "Get Data")
+#             ),
+#             
+#             mainPanel(
+#                 textOutput('username')
+#             )
+#         )  
+#     )
+# )
 
-shinyUI(
-    fluidPage(   
-        #Application title
-        titlePanel("Participatory Design Study"),
-        
-        #Sidebar with controls length of password
-        sidebarLayout(
-            sidebarPanel(
-                textInput("user", 
-                             label = h3("Enter your Username here")),
-                actionButton("button", "Get Data")
-            ),
+library(shiny)
+library(shinydashboard)
+shinyUI( 
+    dashboardPage(
+        dashboardHeader( title=textOutput("title")),
+        dashboardSidebar(uiOutput("side")),
+        dashboardBody(
+            uiOutput("page")
             
-            mainPanel(
-                textOutput('username')
-            )
-        )  
+        )
     )
+    
 )
