@@ -33,7 +33,7 @@ library(shiny)
 library(shinydashboard)
 shinyUI( 
     dashboardPage(
-        dashboardHeader( title=textOutput("title")),
+        dashboardHeader(title=textOutput("title")),
         dashboardSidebar(uiOutput("side")),
         dashboardBody(
             uiOutput("page")

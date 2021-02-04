@@ -82,7 +82,7 @@ get_treatment = function(){
     return(sample(1:5,1))
 }
 
-get_ui=function(group){
+get_ui = function(group){
     itog=list()
     # group = sample(1:5,1)
     
@@ -159,14 +159,18 @@ shinyServer(function(input, output,session) {
             output$title <- renderText({
                 "Participatory Design Study"
             })
+            output$side <- renderUI({
+                mechanical_mi_home_side
+            })
             output$page <- renderUI({
-                box(
-                    div(class="outer",do.call(bootstrapPage,c("",ui1()))))
+                # box(
+                #     div(class="outer",do.call(bootstrapPage,c("",ui1()))))
+                mechanical_mi_home_main
             })
         }
         if (USER$Logged == TRUE)    {
-            itog= get_ui(get_treatment())
-            # itog = get_ui(1)
+            # itog = get_ui(get_treatment())
+            itog = get_ui(3)
             print(itog$title)
             output$title<- renderText({
                 itog$title
