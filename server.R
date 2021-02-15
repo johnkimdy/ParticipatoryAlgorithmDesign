@@ -13,10 +13,10 @@
 # rm(list = ls())
 # library(shiny)
 # #library(googlesheets)
-# 
+#
 # # For Mechanical Task Treatment Groups
 # treatment_group <- function(){
-# 
+#
 #     group = sample(1:5)
 #     if (group == 1){
 #         "Control"
@@ -34,23 +34,23 @@
 #         "Use_Freely"
 #     }
 # }
-# 
-# 
+#
+#
 # shinyServer(function(input, output,session) {
-#     
+#
 #     my_group <- reactive ({
 #         if(input$button == 0)
-#         {  
+#         {
 #             return()
-#         }  
-#         isolate({   
+#         }
+#         isolate({
 #             treatment_group()
-#             
+#
 #         })
-#         
+#
 #     })
 #     output$username <- renderPrint({my_group()})
-#     
+#
 # })
 
 
@@ -68,12 +68,12 @@ source("mechanical_use_freely.R")
 my_username <- c("test","admin")
 # my_password <- c("test","123")
 # get_role=function(user){
-#     
+#
 #     if(user=="test") {
-#         
+#
 #         return("TEST")
 #     }else{
-#         
+#
 #         return("ADMIN")
 #     }
 # }
@@ -85,7 +85,7 @@ get_treatment = function(){
 get_ui = function(group){
     itog=list()
     # group = sample(1:5,1)
-    
+
     # "Control"
     if (group == 1){
         itog$title=mechanical_control_title
@@ -125,9 +125,9 @@ get_ui = function(group){
 
 
 shinyServer(function(input, output,session) {
-    
+
     USER <- reactiveValues(Logged = FALSE,treatment=NULL)
-    
+
     ui1 <- function(){
         tagList(
             div(id = "login",
@@ -135,10 +135,10 @@ shinyServer(function(input, output,session) {
                           br(),actionButton("Login", "Log in")))
             ,tags$style(type="text/css", "#login {font-size:10px;   text-align: left;position:absolute;top: 40%;left: 50%;margin-top: -10px;margin-left: -150px;}")
         )}
-    
-    
-    
-    observe({ 
+
+
+
+    observe({
         if (USER$Logged == FALSE) {
             if (!is.null(input$Login)) {
                 if (input$Login > 0) {
@@ -149,12 +149,13 @@ shinyServer(function(input, output,session) {
                     if (length(Id.username) > 0) {
                         USER$Logged <- TRUE
                         # USER$treatement = get_treatment()
-                    } 
+                    }
                 }
             }
         }
     })
     observe({
+        # when the user is not logged in yet
         if (USER$Logged == FALSE) {
             output$title <- renderText({
                 "Participatory Design Study"
@@ -168,6 +169,7 @@ shinyServer(function(input, output,session) {
                 mechanical_mi_home_main
             })
         }
+        # Once user is logged in
         if (USER$Logged == TRUE)    {
             # itog = get_ui(get_treatment())
             itog = get_ui(3)
