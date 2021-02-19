@@ -1,0 +1,1 @@
+# This is a UI that we are pushing for. The main branch has the randomization process, however this is more of the layout of the overall survey page that we have planned out. We need to incorporate both randomization of the groups as well as cleaner intro page that does not bore survey takers but simultaneously make them understand our process and prerequisite knowledges.
